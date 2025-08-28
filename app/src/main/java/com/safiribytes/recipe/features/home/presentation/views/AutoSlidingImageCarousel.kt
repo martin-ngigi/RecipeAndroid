@@ -3,7 +3,6 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -18,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.google.accompanist.pager.*
-import com.safiribytes.recipe.core.components.Constants
+import com.safiribytes.recipe.core.utils.Constants
 import com.safiribytes.recipe.core.components.ShimmerEffect
 import com.safiribytes.recipe.ui.theme.RecipeAndroidTheme
 import kotlinx.coroutines.delay
@@ -26,15 +25,18 @@ import kotlin.random.Random
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun AutoSlidingCarousel(images: MutableState<List<String>>) {
+fun AutoSlidingCarousel(
+    isLoading: Boolean,
+    images: List<String>
+) {
     // Check if images list is empty
-    if (images.value.isEmpty()) {
+    if (images.isEmpty()) {
         Text(text = "No data available", modifier = Modifier.fillMaxSize(), textAlign = TextAlign.Center)
         return
     }
 
     val pagerState = rememberPagerState()
-    val totalImages = images.value.size
+    val totalImages = images.size
 
     LaunchedEffect(Unit) {
         while (true) {
@@ -43,11 +45,16 @@ fun AutoSlidingCarousel(images: MutableState<List<String>>) {
         }
     }
 
-    AutoSlidingCarouselContent(
-        images = images,
-        pagerState = pagerState,
-        totalImages = totalImages
-    )
+    if (!isLoading) {
+        AutoSlidingCarouselContent(
+            images = images,
+            pagerState = pagerState,
+            totalImages = totalImages
+        )
+    }
+    else {
+        AutoSlidingCarouselShimmerEffect()
+    }
 
 }
 
@@ -92,7 +99,7 @@ fun DotIndicator(isSelected: Boolean) {
 
 @Composable
 fun AutoSlidingCarouselContent(
-    images: MutableState<List<String>>,
+    images: List<String>,
     pagerState: PagerState,
     totalImages: Int,
     randomColor: Color = Color(Random.nextFloat(), Random.nextFloat(), Random.nextFloat(), 0.2f)
@@ -113,7 +120,7 @@ fun AutoSlidingCarouselContent(
 
         ) { page ->
             Image(
-                painter = rememberImagePainter(data = "${Constants.BASE_URL}${images.value[page]}"),
+                painter = rememberImagePainter(data = "${Constants.BASE_URL}${images[page]}"),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
@@ -145,13 +152,14 @@ fun AutoSlidingCarouselShimmerEffect() {
 @SuppressLint("UnrememberedMutableState")
 @Preview
 @Composable
-fun AutoSlidingCarouselPreview(){
-    val images = mutableStateOf(listOf("img1", "img2"))
+fun AutoSlidingCarouselContentPreview(){
+    val images = listOf("img1", "img2")
     RecipeAndroidTheme() {
+
         AutoSlidingCarouselContent(
             images = images,
             pagerState = rememberPagerState(),
-            totalImages = images.value.size
+            totalImages = images.size
         )
     }
 }
@@ -162,5 +170,16 @@ fun AutoSlidingCarouselPreview(){
 fun AutoSlidingCarouselShimmerEffectPreview(){
     RecipeAndroidTheme {
         AutoSlidingCarouselShimmerEffect()
+    }
+}
+
+@Preview
+@Composable
+fun AutoSlidingCarouselPreview(){
+    RecipeAndroidTheme {
+        AutoSlidingCarousel(
+            isLoading = false,
+            images = listOf("img1", "img2")
+        )
     }
 }

@@ -1,5 +1,7 @@
 package com.safiribytes.recipe.features.home.presentation.views
 
+import AutoSlidingCarousel
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -87,7 +89,9 @@ fun HomeScreenContent(
                 .padding(  10.dp)
         ) {
             Box(){
-                Column {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
                     CustomSearchBar(
                         query = "",
                         onQueryChange = { newValue ->
@@ -98,6 +102,11 @@ fun HomeScreenContent(
                         onResultClick = {
 
                         }
+                    )
+
+                    AutoSlidingCarousel(
+                        isLoading = false,
+                        images = listOf("img1", "img2")
                     )
                 }
             }
