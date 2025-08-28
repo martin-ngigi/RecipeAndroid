@@ -8,7 +8,9 @@ espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.1"
 activityCompose = "1.8.0"
 composeBom = "2024.09.00"
+#Added
 coil = "2.7.0"
+accompanistPagerIndicatorsVersion = "0.36.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,6 +29,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 #Added dependencies.
 coil-compose = { group="io.coil-kt", name="coil-compose", version.ref = "coil" }
+accompanistpager = { group = "com.google.accompanist", name = "accompanist-pager", version = "0.34.0" }
+accompanistpager-indicator = { group = "com.google.accompanist", name = "accompanist-pager-indicators", version.ref = "accompanistPagerIndicatorsVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
