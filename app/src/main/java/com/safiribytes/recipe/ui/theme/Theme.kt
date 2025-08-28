@@ -9,50 +9,71 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+private val DarkColors = darkColorScheme(
+    primary = PrimaryDarkColor,
+    onPrimary = PrimaryTextColor,
+    secondary = SecondaryLightColor,
+    onSecondary = SecondaryTextColor,
+    tertiary = PrimaryLightColor,
+    onTertiary = PrimaryTextColor,
+    background = BackgroundDarkColor,
+    onBackground = Color.White,
+    surface = SurfaceDark,
+    onSurface = Color.White,
+    surfaceVariant = SurfaceDark,
+    onSurfaceVariant = Color.White,
+    secondaryContainer = PrimaryDarkColor,
+    onSecondaryContainer = Color.White,
+    error = ErrorColor,
+    onError = OnErrorColor,
+    surfaceContainer = CardContainerDark, // For cards
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+private val LightColors = lightColorScheme(
+    primary = PrimaryLightColor,
+    onPrimary = PrimaryTextColor,
+    secondary = SecondaryColor,
+    onSecondary = SecondaryTextColor,
+    tertiary = PrimaryLightColor,
+    onTertiary = PrimaryTextColor,
+    background = BackgroundLightColor,
+    onBackground = Color.Black,
+    surface = SurfaceLight,
+    onSurface = Color.Black,
+    surfaceVariant = SurfaceLight,
+    onSurfaceVariant = Color.Black,
+    secondaryContainer = PrimaryLightColor,
+    onSecondaryContainer = Color.White,
+    error = ErrorColor,
+    onError = OnErrorColor,
+    surfaceContainer = CardContainerLight,
 )
 
 @Composable
 fun RecipeAndroidTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    theme: Theme = Theme.FollowSystem,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+    val autoColors = when(theme){
+        Theme.Light -> LightColors
+        Theme.Dark -> DarkColors
+        Theme.FollowSystem -> isSystemInDarkTheme().let {
+            if (it) DarkColors else LightColors
         }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
     }
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = autoColors,
         typography = Typography,
-        content = content
+        content = content,
     )
+}
+
+enum class Theme {
+    Light,
+    Dark,
+    FollowSystem
 }
