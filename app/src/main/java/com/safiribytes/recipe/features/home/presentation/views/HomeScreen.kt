@@ -91,7 +91,7 @@ fun HomeScreenContent(
         ) {
             Box(){
                 Column(
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                    verticalArrangement = Arrangement.spacedBy(20.dp)
                 ) {
                     CustomSearchBar(
                         query = "",
@@ -111,7 +111,11 @@ fun HomeScreenContent(
                     )
 
                     TrendingRecipesComponent(
-                        onTapSeeAll = {}
+                        recipes = listOf("1", "2", "3", "4", "5", "6"),
+                        rows = 2,
+                        onTapSeeAll = {
+
+                        }
                     )
 
                 }

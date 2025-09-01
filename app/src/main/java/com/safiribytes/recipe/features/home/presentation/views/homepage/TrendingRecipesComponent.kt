@@ -9,11 +9,14 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
@@ -29,10 +32,13 @@ import androidx.compose.ui.unit.dp
 import com.safiribytes.recipe.features.home.presentation.views.RecipeItemView
 import com.safiribytes.recipe.ui.theme.RecipeAndroidTheme
 import com.safiribytes.recipe.ui.theme.Theme
+import kotlin.collections.chunked
 
 @Composable
 fun TrendingRecipesComponent(
-    onTapSeeAll: () -> Unit
+    onTapSeeAll: () -> Unit,
+    recipes: List<String>,
+    rows: Int
 ){
 
     Column(
@@ -40,6 +46,7 @@ fun TrendingRecipesComponent(
         verticalArrangement = Arrangement.Top
     ) {
         Row (
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ){
@@ -57,7 +64,9 @@ fun TrendingRecipesComponent(
             ) {
                 Text(
                     text = "See All",
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium.copy(
+                        color = MaterialTheme.colorScheme.primary
+                    )
                 )
 
                 Icon(
@@ -69,12 +78,33 @@ fun TrendingRecipesComponent(
             }
         }
 
-        RecipeAndroidTheme(theme = Theme.Light) {
-            RecipesGrid(
-                onTap = {},
-                orientation = GridOrientation.Vertical
-            )
+        LazyRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(5.dp),
+            contentPadding = PaddingValues(horizontal =  3.dp)
+        ) {
+            items(recipes.chunked(rows)){ chunck ->
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(15.dp),
+                    modifier = Modifier
+                        .width(150.dp)
+                        .padding(vertical = 8.dp, horizontal = 5.dp)
+                ) {
+                    chunck.forEach{ trendingItem ->
+
+                        RecipeItemView()
+
+                    }
+                }
+            }
         }
+
+        /*
+        RecipesGrid(
+            onTap = {},
+            orientation = GridOrientation.Vertical
+        )
+        */
 
 
     }
@@ -85,6 +115,8 @@ fun TrendingRecipesComponent(
 fun TrendingRecipesComponentPreviewLight(){
     RecipeAndroidTheme (theme = Theme.Light){
         TrendingRecipesComponent(
+            recipes = listOf("1", "2", "3", "4", "5", "6"),
+            rows = 2,
             onTapSeeAll = {
 
             }
@@ -97,6 +129,8 @@ fun TrendingRecipesComponentPreviewLight(){
 fun TrendingRecipesComponentPreviewDark(){
     RecipeAndroidTheme (theme = Theme.Dark){
         TrendingRecipesComponent(
+            recipes = listOf("1", "2", "3", "4", "5", "6"),
+            rows = 2,
             onTapSeeAll = {
 
             }
