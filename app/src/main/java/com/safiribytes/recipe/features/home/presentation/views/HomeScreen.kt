@@ -24,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.safiribytes.recipe.core.components.CustomSearchBar
+import com.safiribytes.recipe.features.home.presentation.views.homepage.TrendingRecipesComponent
 import com.safiribytes.recipe.ui.theme.RecipeAndroidTheme
 import com.safiribytes.recipe.ui.theme.Theme
 
@@ -108,6 +109,11 @@ fun HomeScreenContent(
                         isLoading = false,
                         images = listOf("img1", "img2")
                     )
+
+                    TrendingRecipesComponent(
+                        onTapSeeAll = {}
+                    )
+
                 }
             }
         }
