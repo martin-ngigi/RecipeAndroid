@@ -42,7 +42,7 @@ fun RecipeItemView(
     Box(
         modifier = modifier
             .size(width = 170.dp, height = 150.dp)
-            .clip(RoundedCornerShape(20.dp))
+            .clip(RoundedCornerShape(10.dp))
     ) {
         // Background image
         CustomImageView(
@@ -76,8 +76,7 @@ fun RecipeItemView(
                     text = name,
                     style = TextStyle(
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onSurface
+                        fontWeight = FontWeight.Medium
                     )
                 )
 

@@ -17,7 +17,7 @@ fun CustomImageView(
     url: String,
     maxWidth: Dp = Dp.Unspecified,
     height: Dp = 256.dp,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     AsyncImage(
         model = url,

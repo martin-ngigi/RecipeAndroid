@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -24,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.safiribytes.recipe.core.components.CustomSearchBar
+import com.safiribytes.recipe.features.home.presentation.views.homepage.PopularChefsComponent
 import com.safiribytes.recipe.features.home.presentation.views.homepage.TrendingRecipesComponent
 import com.safiribytes.recipe.ui.theme.RecipeAndroidTheme
 import com.safiribytes.recipe.ui.theme.Theme
@@ -82,17 +84,19 @@ fun HomeScreenContent(
             )
         }
     ) { innerPadding ->
-        Column(
+        Box(
             modifier = Modifier
                 .padding(innerPadding)
-                .verticalScroll(rememberScrollState())
                 .fillMaxSize()
-                .padding(  10.dp)
-        ) {
-            Box(){
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(20.dp)
-                ) {
+        ){
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(10.dp),
+                verticalArrangement = Arrangement.spacedBy(20.dp)
+            ) {
+
+                item {
                     CustomSearchBar(
                         query = "",
                         onQueryChange = { newValue ->
@@ -104,12 +108,16 @@ fun HomeScreenContent(
 
                         }
                     )
+                }
 
+                item {
                     AutoSlidingCarousel(
                         isLoading = false,
                         images = listOf("img1", "img2")
                     )
+                }
 
+                item {
                     TrendingRecipesComponent(
                         recipes = listOf("1", "2", "3", "4", "5", "6"),
                         rows = 2,
@@ -117,8 +125,15 @@ fun HomeScreenContent(
 
                         }
                     )
-
                 }
+
+                item {
+                    PopularChefsComponent(
+                        onTapSeeAll = {},
+                        chefs = listOf("1", "2", "3")
+                    )
+                }
+
             }
         }
     }
@@ -127,6 +142,21 @@ fun HomeScreenContent(
 @Composable
 @Preview
 fun HomeScreenPreviewLight(){
+    RecipeAndroidTheme(theme = Theme.Light) {
+        HomeScreenContent(
+            onTapBack = {
+
+            },
+            actions = {
+
+            }
+        )
+    }
+}
+
+@Composable
+@Preview
+fun HomeScreenPreviewDark(){
     RecipeAndroidTheme(theme = Theme.Dark) {
         HomeScreenContent(
             onTapBack = {

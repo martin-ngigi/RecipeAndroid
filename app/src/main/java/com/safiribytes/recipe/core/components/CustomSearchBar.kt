@@ -56,7 +56,7 @@ fun CustomSearchBar(
             placeholder = {
                 Text(
                     text = placeholder,
-                    color = MaterialTheme.colorScheme.onSurface
+                    //color = MaterialTheme.colorScheme.onSurface
                 )
             },
             leadingIcon = leadingIcon,
@@ -90,7 +90,7 @@ fun CustomSearchBar(
                 items(results) { result ->
                     Text(
                         text = result,
-                        color = MaterialTheme.colorScheme.onSurface,
+                       // color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
