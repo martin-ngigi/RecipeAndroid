@@ -21,4 +21,11 @@ dependencyResolutionManagement {
 
 rootProject.name = "RecipeAndroid"
 include(":app")
- 
+include(":app:recipeuser")
+include(":app:recipechef")
+include(":features")
+include(":features:authentication")
+include(":features:dashboard")
+include(":core")
+include(":coreui")
+include(":features:landing")

@@ -11,6 +11,14 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app/recipechef" />
+            <option value="$PROJECT_DIR$/app/recipeuser" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/coreui" />
+            <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/authentication" />
+            <option value="$PROJECT_DIR$/features/dashboard" />
+            <option value="$PROJECT_DIR$/features/landing" />
           </set>
         </option>
       </GradleProjectSettings>
