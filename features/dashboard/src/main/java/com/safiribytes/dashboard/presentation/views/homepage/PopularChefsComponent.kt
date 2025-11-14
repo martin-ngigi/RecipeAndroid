@@ -19,12 +19,14 @@ import androidx.compose.ui.unit.dp
 import com.safiribytes.coreui.theme.Theme
 import com.safiribytes.coreui.theme.chefapp.ChefAppTheme
 import com.safiribytes.coreui.theme.userapp.UserAppTheme
+import com.safiribytes.dashboard.data.models.UserModel
 
 @Composable
 fun PopularChefsComponent(
-    chefs: List<String>,
-    onTapSeeAll: () -> Unit
-) {
+    chefs: List<UserModel>,
+    onTapSeeAll: () -> Unit,
+    onTapChef: (UserModel) -> Unit
+ ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(space = 5.dp, alignment = Alignment.Top )
@@ -68,7 +70,11 @@ fun PopularChefsComponent(
             //contentPadding = PaddingValues(vertical = 5.dp)
         ) {
             chefs.forEach { chef ->
-                ChefHomeRow()
+                ChefHomeRow(
+                    onTapChef = {
+                        onTapChef(chef)
+                    }
+                )
             }
 
         }
@@ -84,7 +90,10 @@ fun PopularChefsComponentLightPreview(){
     UserAppTheme(theme = Theme.Light) {
         PopularChefsComponent(
             onTapSeeAll = {},
-            chefs = listOf("1", "2", "3")
+            chefs = emptyList(),
+            onTapChef = { chef ->
+
+            }
         )
     }
 }
@@ -95,7 +104,10 @@ fun PopularChefsComponentDarkPreview(){
     ChefAppTheme (theme = Theme.Dark) {
         PopularChefsComponent(
             onTapSeeAll = {},
-            chefs = listOf("1", "2", "3")
+            chefs = emptyList(),
+            onTapChef = { chef ->
+
+            }
         )
     }
 }

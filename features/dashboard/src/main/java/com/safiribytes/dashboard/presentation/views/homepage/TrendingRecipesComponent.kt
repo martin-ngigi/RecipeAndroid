@@ -23,15 +23,17 @@ import androidx.compose.ui.unit.dp
 import com.safiribytes.coreui.theme.Theme
 import com.safiribytes.coreui.theme.chefapp.ChefAppTheme
 import com.safiribytes.coreui.theme.userapp.UserAppTheme
+import com.safiribytes.dashboard.data.models.RecipeModel
 import com.safiribytes.dashboard.presentation.views.RecipeItemView
 import kotlin.collections.chunked
 
 @Composable
 fun TrendingRecipesComponent(
+    recipes: List<RecipeModel> = emptyList(),
+    rows: Int,
     onTapSeeAll: () -> Unit,
-    recipes: List<String>,
-    rows: Int
-){
+    onTapRecipeItem: (RecipeModel) -> Unit,
+    ){
 
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -82,8 +84,11 @@ fun TrendingRecipesComponent(
                         .padding(vertical = 8.dp, horizontal = 5.dp)
                 ) {
                     chunck.forEach{ trendingItem ->
-
-                        RecipeItemView()
+                        RecipeItemView(
+                            onTap = {
+                                onTapRecipeItem(trendingItem)
+                            }
+                        )
 
                     }
                 }
@@ -106,9 +111,12 @@ fun TrendingRecipesComponent(
 fun TrendingRecipesComponentPreviewLight(){
     UserAppTheme(theme = Theme.Light){
         TrendingRecipesComponent(
-            recipes = listOf("1", "2", "3", "4", "5", "6"),
+            recipes = emptyList(),
             rows = 2,
             onTapSeeAll = {
+
+            },
+            onTapRecipeItem = { item ->
 
             }
         )
@@ -120,9 +128,12 @@ fun TrendingRecipesComponentPreviewLight(){
 fun TrendingRecipesComponentPreviewDark(){
     ChefAppTheme(theme = Theme.Dark){
         TrendingRecipesComponent(
-            recipes = listOf("1", "2", "3", "4", "5", "6"),
+            recipes = emptyList(),
             rows = 2,
             onTapSeeAll = {
+
+            },
+            onTapRecipeItem = { item ->
 
             }
         )

@@ -15,7 +15,9 @@ import androidx.lifecycle.lifecycleScope
 import com.safiribytes.coreui.theme.userapp.UserAppTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ChefMainActivity : ComponentActivity() {
     @Volatile
     private var keepSplash = true  // start as true

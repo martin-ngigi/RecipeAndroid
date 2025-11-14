@@ -1,5 +1,6 @@
 package com.safiribytes.dashboard.presentation.views.homepage
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,13 +26,19 @@ import com.safiribytes.coreui.extensions.customCardStyle
 import com.safiribytes.coreui.theme.Theme
 import com.safiribytes.coreui.theme.chefapp.ChefAppTheme
 import com.safiribytes.coreui.theme.userapp.UserAppTheme
+import com.safiribytes.dashboard.data.models.UserModel
 
 @Composable
-fun ChefHomeRow(){
+fun ChefHomeRow(
+    onTapChef: () -> Unit
+){
     Row (
         modifier = Modifier
             .customCardStyle(padding = 8.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable{
+                onTapChef()
+            },
         horizontalArrangement = Arrangement.spacedBy(10.dp)
     ){
         CustomImageView(

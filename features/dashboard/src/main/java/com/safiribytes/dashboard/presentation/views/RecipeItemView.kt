@@ -1,6 +1,7 @@
 package com.safiribytes.dashboard.presentation.views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,12 +38,16 @@ fun RecipeItemView(
     modifier: Modifier = Modifier,
     name: String = "Name",
     rating: String = "4.0",
-    imageUrl: String = ""
+    imageUrl: String = "",
+    onTap: () -> Unit
 ) {
     Box(
         modifier = modifier
             .size(width = 170.dp, height = 150.dp)
             .clip(RoundedCornerShape(10.dp))
+            .clickable{
+                onTap()
+            }
     ) {
         // Background image
         CustomImageView(
@@ -113,7 +118,11 @@ fun RecipeItemView(
 @Composable
 fun RecipeItemViewPreviewLight(){
     UserAppTheme(Theme.Light){
-        RecipeItemView()
+        RecipeItemView(
+            onTap = {
+
+            }
+        )
     }
 }
 
@@ -121,7 +130,11 @@ fun RecipeItemViewPreviewLight(){
 @Composable
 fun RecipeItemViewPreviewDark(){
     ChefAppTheme(Theme.Dark){
-        RecipeItemView()
+        RecipeItemView(
+            onTap = {
+
+            }
+        )
     }
 }
 

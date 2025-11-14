@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose) // NB: Add this
-
+    alias(libs.plugins.dagger.hilt ) apply false
 }
 
 android {
@@ -89,4 +89,22 @@ dependencies {
 
     //Splash Screen
     implementation(libs.core.splashscreen )
+
+    //ktor
+    implementation(libs.ktor.serializer)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.auth)
+    implementation(libs.ktor.negotiation)
+    implementation(libs.ktor.logging)
+    implementation(libs.ktor.okhttp)
+    implementation(libs.ktor.network)
+    implementation(libs.ktor.mock)
+    implementation(libs.ktor.network.tls)
+    //hilt
+    implementation(libs.hilt.navigation.compose )
+    implementation(libs.dagger.hilt.impl )
+    implementation(libs.dagger.hilt.comp  )
+    //coroutines
+    implementation(libs.coroutines )
 }

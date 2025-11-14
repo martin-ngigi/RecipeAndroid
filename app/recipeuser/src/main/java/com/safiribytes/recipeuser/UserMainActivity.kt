@@ -19,6 +19,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class UserMainActivity : ComponentActivity() {
 
     @Volatile

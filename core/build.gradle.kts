@@ -66,4 +66,22 @@ dependencies {
     //pager
     implementation(libs.accompanistpager)
     implementation(libs.accompanistpager.indicator)
+    //ktor
+    implementation(libs.ktor.serializer)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.auth)
+    implementation(libs.ktor.negotiation)
+    implementation(libs.ktor.logging)
+    implementation(libs.ktor.okhttp)
+    implementation(libs.ktor.network)
+    implementation(libs.ktor.mock)
+    implementation(libs.ktor.network.tls)
+    //hilt
+    implementation(libs.hilt.navigation.compose )
+    implementation(libs.dagger.hilt.impl )
+    implementation(libs.dagger.hilt.comp  )
+    //coroutines
+    implementation(libs.coroutines )
+
 }

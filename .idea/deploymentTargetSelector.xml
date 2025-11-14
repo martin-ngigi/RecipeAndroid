@@ -2,10 +2,10 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="app.recipeuser">
+      <SelectionState runConfigName="app.recipechef">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="app.recipechef">
+      <SelectionState runConfigName="app.recipeuser">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
