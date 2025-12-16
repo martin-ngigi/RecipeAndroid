@@ -40,6 +40,13 @@ android {
     buildFeatures {
         compose = true
     }
+
+    //This fixes issue of dagger hilt duplicate modules.
+    packaging {
+        resources {
+            excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
+    }
 }
 
 /*
@@ -63,7 +70,10 @@ dependencies {
     implementation(project(":coreui"))
     implementation(project(":features:landing"))*/
 
+    implementation(project(":core"))
     implementation(project(":coreui"))
+    implementation(project(":features:dashboard"))
+    implementation(project(":features:landing"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

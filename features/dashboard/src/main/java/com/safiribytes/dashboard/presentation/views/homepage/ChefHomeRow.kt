@@ -86,7 +86,9 @@ fun ChefHomeRow(
 @Composable
 fun ChefHomeRowPreviewLight(){
     ChefAppTheme(theme = Theme.Light) {
-        ChefHomeRow()
+        ChefHomeRow(
+            onTapChef = {}
+        )
     }
 }
 
@@ -94,6 +96,8 @@ fun ChefHomeRowPreviewLight(){
 @Composable
 fun ChefHomeRowPreviewDark(){
     UserAppTheme(theme = Theme.Dark) {
-        ChefHomeRow()
+        ChefHomeRow(
+            onTapChef = {}
+        )
     }
 }

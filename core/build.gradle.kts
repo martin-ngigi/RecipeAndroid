@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose) // NB: Add this
+    alias(libs.plugins.dagger.hilt ) apply false
 }
 
 android {

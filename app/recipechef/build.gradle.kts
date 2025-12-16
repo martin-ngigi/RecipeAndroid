@@ -40,6 +40,13 @@ android {
     buildFeatures {
         compose = true
     }
+
+    //This fixes issue of dagger hilt duplicate modules.
+    packaging {
+        resources {
+            excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
+    }
 }
 
 dependencies {

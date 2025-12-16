@@ -13,6 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavGraph
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.safiribytes.coreui.navigation.Route
 import com.safiribytes.coreui.theme.userapp.UserAppTheme
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -26,6 +30,8 @@ class UserMainActivity : ComponentActivity() {
 
     @Volatile
     private var keepSplash = true  // start as true
+
+    private lateinit var navController: NavHostController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Install splash before super.onCreate
@@ -43,21 +49,17 @@ class UserMainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
-            UserAppTheme {
-                UserMainScreen()
-            }
+            navController = rememberNavController()
+
+            RecipeUserNavigation(
+                navController = navController,
+                startDestination = Route.LandingScreen.route,
+                isDrawerOpened = false,
+                onDrawerOpen = { isOpen ->
+
+                }
+            )
         }
-    }
-}
-@Composable
-fun UserMainScreen() {
-    Scaffold(
-        modifier = Modifier.fillMaxSize()
-    ) { innerPadding ->
-        Text(
-            text = "User App",
-            modifier = Modifier.padding(innerPadding)
-        )
     }
 }
 

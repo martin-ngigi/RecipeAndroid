@@ -54,7 +54,13 @@ fun RecipesGrid(
                             verticalArrangement = Arrangement.spacedBy(5.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
-                            RecipeItemView()
+                            RecipeItemView(
+                                modifier = Modifier,
+                                name = "",
+                                rating = "",
+                                imageUrl = "",
+                                onTap = {}
+                            )
                         }
                     }
                 }
@@ -72,7 +78,13 @@ fun RecipesGrid(
                             verticalArrangement = Arrangement.spacedBy(5.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                         ) {
-                            RecipeItemView()
+                            RecipeItemView(
+                                modifier = Modifier,
+                                name = "",
+                                rating = "",
+                                imageUrl = "",
+                                onTap = {}
+                            )
                         }
                     }
                 }

@@ -29,14 +29,32 @@ import com.safiribytes.coreui.R
 //import com.safiribytes.recipe.core.components.CustomButtonView
 //import com.safiribytes.recipe.ui.theme.RecipeAndroidTheme
 //import com.safiribytes.recipe.ui.theme.Theme
+import androidx.navigation.NavController
+import com.safiribytes.coreui.navigation.Route
+import com.safiribytes.landing.presentation.LandingUIEvents
 
 @Composable
-fun LandingScreen() {
-    LandingScreenContent()
+fun LandingScreen(
+    navController: NavController
+) {
+    LandingScreenContent(
+        onEvent = { events ->
+            when(events){
+                LandingUIEvents.OnExit -> {
+
+                }
+                LandingUIEvents.OnTapGetStarted -> {
+                    navController.navigate(Route.DashboardScreen)
+                }
+            }
+        }
+    )
 }
 
 @Composable
-fun LandingScreenContent() {
+fun LandingScreenContent(
+    onEvent: (LandingUIEvents) -> Unit
+) {
     Column(
         modifier = Modifier.
         fillMaxSize()
@@ -100,7 +118,7 @@ fun LandingScreenContent() {
                 CustomButtonView(
                     buttonName = "Get started",
                     onTap = {
-
+                        onEvent(LandingUIEvents.OnTapGetStarted)
                     }
                 )
 
@@ -113,7 +131,11 @@ fun LandingScreenContent() {
 @Preview
 fun LandingScreenPreviewLight() {
     UserAppTheme(theme = Theme.Light) {
-        LandingScreenContent()
+        LandingScreenContent(
+            onEvent = { events ->
+
+            }
+        )
     }
 }
 
@@ -122,6 +144,10 @@ fun LandingScreenPreviewLight() {
 @Preview()
 fun LandingScreenPreviewDark() {
     ChefAppTheme( theme = Theme.Dark) {
-        LandingScreenContent()
+        LandingScreenContent(
+            onEvent = { events ->
+
+            }
+        )
     }
 }

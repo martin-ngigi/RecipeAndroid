@@ -30,7 +30,7 @@ class HttpUtil @Inject constructor (
 
         request.method = httpMethod
         if (httpMethod == HttpMethod.Post) {
-            request.setBody(requestBody)
+            request.setBody(requestBody ?: {})
         }
 
         request.headers {

@@ -69,7 +69,19 @@ class HomeViewModel @Inject constructor(
 
     fun onEvent(event: HomeUIEvents){
         when(event){
-            HomeUIEvents.OnNavigateUp -> {
+            is HomeUIEvents.OnNavigateUp -> {
+
+            }
+            is HomeUIEvents.OnNavigateToChefDetails -> {
+
+            }
+            is HomeUIEvents.OnNavigateToRecipeDetails -> {
+
+            }
+            is HomeUIEvents.OnNavigateToSeeAllChefs -> {
+
+            }
+            is HomeUIEvents.OnNavigateToSeeAllTrendingRecipes -> {
 
             }
         }

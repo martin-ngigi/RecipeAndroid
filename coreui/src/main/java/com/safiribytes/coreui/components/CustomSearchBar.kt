@@ -1,5 +1,6 @@
 package com.safiribytes.coreui.components
 
+import android.graphics.drawable.Icon
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,12 +13,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -35,9 +36,6 @@ import com.safiribytes.coreui.theme.Theme
 import com.safiribytes.coreui.theme.chefapp.ChefAppTheme
 import com.safiribytes.coreui.theme.userapp.UserAppTheme
 
-//import com.safiribytes.recipe.ui.theme.RecipeAndroidTheme
-//import com.safiribytes.recipe.ui.theme.Theme
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CustomSearchBar(
@@ -46,7 +44,7 @@ fun CustomSearchBar(
     onSearch: (String) -> Unit,
     modifier: Modifier = Modifier,
     placeholder: String = "Search...",
-    leadingIcon: @Composable (() -> Unit)? = { Icon(Icons.Default.Search, contentDescription = "Search Icon") },
+    leadingIcon: @Composable (() -> Unit)? = { Icon( Icons.Filled.Search, contentDescription = null) },
     trailingIcon: @Composable (() -> Unit)? = null,
     results: List<String> = emptyList(),
     onResultClick: (String) -> Unit
@@ -67,7 +65,7 @@ fun CustomSearchBar(
             trailingIcon = {
                 if (query.isNotEmpty()) {
                     IconButton(onClick = { onQueryChange("") }) {
-                        Icon(Icons.Default.Close, contentDescription = "Clear Search")
+                        Icon(Icons.Default.Cancel, contentDescription = "Clear Search")
                     }
                 }
             },
