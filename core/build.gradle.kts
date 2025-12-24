@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose) // NB: Add this
-    alias(libs.plugins.dagger.hilt ) apply false
+    alias(libs.plugins.dagger.hilt )
+    alias(libs.plugins.app.ksp )
+    alias(libs.plugins.app.serialization )
 }
 
 android {
@@ -29,13 +31,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 
     //NB: Add this line here
     buildFeatures {
         compose = true
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
     }
 }
 
@@ -81,7 +86,7 @@ dependencies {
     //hilt
     implementation(libs.hilt.navigation.compose )
     implementation(libs.dagger.hilt.impl )
-    implementation(libs.dagger.hilt.comp  )
+    ksp(libs.dagger.hilt.comp)
     //coroutines
     implementation(libs.coroutines )
 

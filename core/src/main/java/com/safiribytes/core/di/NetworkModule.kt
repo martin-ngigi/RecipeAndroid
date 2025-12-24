@@ -20,11 +20,17 @@ import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
+import io.ktor.client.engine.okhttp.OkHttp
 
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
+    @Provides
+    @Singleton
+    fun provideHttpClientEngine(): HttpClientEngine {
+        return OkHttp.create()
+    }
     @Provides
     @Singleton
     fun provideHttpClient(
@@ -40,8 +46,14 @@ class NetworkModule {
                 url(Constants.BASE_URL)
                 header(key = HttpHeaders.ContentType, value = ContentType.Application.Json)
             }
+
             install(ContentNegotiation) {
-                json(Json)
+                json(
+                    Json {
+                        ignoreUnknownKeys = true
+                        isLenient = true
+                    }
+                )
             }
         }
     }

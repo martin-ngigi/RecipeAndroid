@@ -19,6 +19,7 @@ ktorVersion = "3.3.3"
 daggerHiltVersion = "2.57.2"
 hiltNavigationComposeVersion = "1.3.0"
 coroutinesVersion = "1.10.2"
+kspVersion = "2.2.20-2.0.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -58,7 +59,7 @@ ktor-network-tls= {group="io.ktor", name="ktor-network-tls", version.ref="ktorVe
 
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion" }
 dagger-hilt-impl = {group="com.google.dagger", name="hilt-android", version.ref="daggerHiltVersion"}
-dagger-hilt-comp = {group="com.google.dagger",name="hilt-android-compiler", version.ref="daggerHiltVersion"}
+dagger-hilt-comp = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "daggerHiltVersion" }
 coroutines = {group="org.jetbrains.kotlinx",name="kotlinx-coroutines-android", version.ref="coroutinesVersion"}
 
 [plugins]
@@ -67,4 +68,6 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 dagger-hilt = { id= "com.google.dagger.hilt.android", version.ref="daggerHiltVersion"}
+app-ksp = { id= "com.google.devtools.ksp", version.ref="kspVersion"}
+app-serialization = { id= "org.jetbrains.kotlin.plugin.serialization", version.ref="kotlin"}
 

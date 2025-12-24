@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose) // NB: Add this
+    alias(libs.plugins.dagger.hilt )
+    alias(libs.plugins.app.ksp )
+    alias(libs.plugins.app.serialization )
 }
 
 android {
@@ -28,9 +31,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 
     //NB: Add this line here
     buildFeatures {
@@ -38,16 +38,14 @@ android {
     }
 }
 
-dependencies {
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    }
+}
 
-    /*
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    */
+
+dependencies {
 
     //implementation(project(":features:dashboard"))
     implementation(project(":core"))
@@ -81,5 +79,5 @@ dependencies {
     //hilt
     implementation(libs.hilt.navigation.compose )
     implementation(libs.dagger.hilt.impl )
-    implementation(libs.dagger.hilt.comp  )
+    ksp(libs.dagger.hilt.comp)
 }

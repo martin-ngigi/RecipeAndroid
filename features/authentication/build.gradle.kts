@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)  //NB: Add this
+    alias(libs.plugins.kotlin.compose) // NB: Add this
+    alias(libs.plugins.dagger.hilt )
+    alias(libs.plugins.app.ksp )
+    alias(libs.plugins.app.serialization )
 }
 
 android {
@@ -28,25 +31,19 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 
     buildFeatures {
         compose = true // Add This
     }
 }
 
-dependencies {
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+    }
+}
 
-    /*
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    */
+dependencies {
 
     implementation(project(":core"))//NB: Add this
     implementation(project(":coreui"))
@@ -74,6 +71,8 @@ dependencies {
 
     //images coil
     implementation(libs.coil.compose)
+    implementation(libs.dagger.hilt.impl )
+    ksp(libs.dagger.hilt.comp  )
     //pager
     implementation(libs.accompanistpager)
     implementation(libs.accompanistpager.indicator)

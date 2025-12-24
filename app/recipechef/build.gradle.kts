@@ -2,7 +2,9 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose) // NB: Add this
-    alias(libs.plugins.dagger.hilt ) apply false
+    alias(libs.plugins.dagger.hilt )
+    alias(libs.plugins.app.ksp )
+    alias(libs.plugins.app.serialization )
 }
 
 android {
@@ -32,31 +34,21 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 
     //NB: Add this line here
     buildFeatures {
         compose = true
     }
 
-    //This fixes issue of dagger hilt duplicate modules.
-    packaging {
-        resources {
-            excludes += "META-INF/gradle/incremental.annotation.processors"
-        }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
     }
 }
 
 dependencies {
-
-   /* implementation(project(":features"))
-    implementation(project(":features:authentication"))
-    implementation(project(":features:dashboard"))
-    implementation(project(":core"))
-    implementation(project(":coreui"))
-    implementation(project(":features:landing"))*/
 
     implementation(project(":coreui"))
 
@@ -111,7 +103,7 @@ dependencies {
     //hilt
     implementation(libs.hilt.navigation.compose )
     implementation(libs.dagger.hilt.impl )
-    implementation(libs.dagger.hilt.comp  )
+    ksp(libs.dagger.hilt.comp)
     //coroutines
     implementation(libs.coroutines )
 }
