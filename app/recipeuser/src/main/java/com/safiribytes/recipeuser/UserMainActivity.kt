@@ -16,7 +16,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.safiribytes.core.utils.AppType
 import com.safiribytes.coreui.navigation.Route
+import com.safiribytes.coreui.theme.RecipeAppTheme
 import com.safiribytes.coreui.theme.userapp.UserAppTheme
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -50,13 +52,18 @@ class UserMainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             navController = rememberNavController()
+            RecipeAppTheme(
+                appType = AppType.USER,
+                content = {
+                    val initialRoute = Route.LandingScreen.route
+                    RecipeUserNavigation(
+                        startDestination = initialRoute,
+                        navController = navController,
+                        isDrawerOpened = false,
+                        onDrawerOpen = {  isOpen ->
 
-            RecipeUserNavigation(
-                navController = navController,
-                startDestination = Route.LandingScreen.route,
-                isDrawerOpened = false,
-                onDrawerOpen = { isOpen ->
-
+                        }
+                    )
                 }
             )
         }

@@ -44,7 +44,7 @@ fun LandingScreen(
 
                 }
                 LandingUIEvents.OnTapGetStarted -> {
-                    navController.navigate(Route.DashboardScreen)
+                    navController.navigate(Route.DashboardScreen.route)
                 }
             }
         }

@@ -10,6 +10,7 @@ import com.safiribytes.coreui.navigation.Route
 import com.safiribytes.coreui.scaleInEnterTransition
 import com.safiribytes.coreui.scaleInPopEnterEnterTransition
 import com.safiribytes.coreui.scaleOutExitTransition
+import com.safiribytes.dashboard.presentation.dashboardNavigation
 import com.safiribytes.dashboard.presentation.views.HomeScreen
 import com.safiribytes.landing.presentation.views.LandingScreen
 
@@ -29,20 +30,12 @@ fun RecipeUserNavigation(
         popExitTransition = { scaleOutExitTransition() },
     ){
         authenticationNavGraph(navController = navController)
-        dashboardNavGraph(navController = navController)
+        dashboardNavigation(navController = navController)
     }
 
 }
 
-fun NavGraphBuilder.dashboardNavGraph(
-    navController: NavController
-){
-    composable(
-        route = Route.HomeScreen.route
-    ) {
-        HomeScreen(navController = navController)
-    }
-}
+
 
 fun NavGraphBuilder.authenticationNavGraph(
     navController: NavController
