@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.google.accompanist.pager.*
 import com.safiribytes.core.utils.Constants
+import com.safiribytes.coreui.components.EmptyStateView
 import com.safiribytes.coreui.components.ShimmerEffect
 import com.safiribytes.coreui.theme.chefapp.ChefAppTheme
 import com.safiribytes.coreui.theme.userapp.UserAppTheme
@@ -32,7 +33,14 @@ fun AutoSlidingCarousel(
 ) {
     // Check if images list is empty
     if (images.isEmpty()) {
-        Text(text = "No data available", modifier = Modifier.fillMaxSize(), textAlign = TextAlign.Center)
+        EmptyStateView(
+            message = "Empty",
+            subMessage = "Seems like there no items found, please retry by clicking button below",
+            onTapButtonName = "Retry",
+            onTap = {
+
+            }
+        )
         return
     }
 

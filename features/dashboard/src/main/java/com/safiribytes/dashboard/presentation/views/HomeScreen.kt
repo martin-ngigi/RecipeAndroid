@@ -169,9 +169,13 @@ fun HomeScreenContent(
                 }
 
                 item {
+                    val images = uiState.homeResponseModel?.data?.justForYou?.let { imageModel ->
+                        imageModel.map { it.image }.filter { it.isNotEmpty() }
+                    } ?: emptyList()
+
                     AutoSlidingCarousel(
                         isLoading = false,
-                        images = uiState.homeResponseModel?.data?.justForYou?.map { it.image } as List<String>
+                        images = images
                     )
                 }
 

@@ -18,8 +18,8 @@ val SecondaryTextColor = Color(0xff000000)
 //val SurfaceDark = Color(0xFF393938)
 //val SurfaceLight = Color(0xFFf5f4f4)
 
-val SurfaceDark = Color(0xFF000000)
-val SurfaceLight = Color(0xFFFFFFFF)
+val SurfaceDark = Color(0xFF0C1014)
+val SurfaceLight = Color(0xFFF0F4FF)
 
 val CardContainerLight = Color(0xFFE3E2E2)        // Pure white
 val CardContainerDark = Color(0xFF3D3D3D)         // Almost black, soft on OLED
